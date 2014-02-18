@@ -28,8 +28,6 @@ public class SecondActivity extends Activity {
 		setContentView(linearLayout);
 		
 		Log.d("Yamba", "I am in the second activity");
-
-
 	}
-
+	
 }

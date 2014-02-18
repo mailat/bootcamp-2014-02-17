@@ -24,5 +24,7 @@
         </activity>
         <activity android:name="com.intel.yamba.SecondActivity"></activity>
     </application>
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>

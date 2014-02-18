@@ -1,10 +1,13 @@
 package com.intel.yamba;
 
+import com.marakana.android.yamba.clientlib.YambaClient;
+import com.marakana.android.yamba.clientlib.YambaClientException;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -75,13 +78,49 @@ public class StatusActivity extends Activity {
 	    
 	public void buttonUpdateClick(View v)
 	{
-		// we got reference to the EditText
+		// we got reference to the EditText and we read the status
 		EditText editText = (EditText) findViewById(R.id.editText);
 		String editTextPost = editText.getText().toString();
 
-		//TODO just post on twitter
+		//call the AsyncTask poster to send the text
+		PostToTwitter postToTwitter = new PostToTwitter();
+		postToTwitter.execute(editTextPost);
 	}
 
+	/**
+	 * postToTwitter
+	 * post in an AsyncTask the information to Yamba.Marakana.com
+	 *
+	 */
+	class PostToTwitter extends AsyncTask<String, Integer, String>{
+
+		@Override
+		protected String doInBackground(String ... status) {
+			//start posting on twitter
+			YambaClient cloudPost = new YambaClient("marius", "password");
+			try {
+				cloudPost.postStatus(status[0]);
+				return "Posting was ok";
+			} catch (Throwable e) {
+				e.printStackTrace();
+				Log.d("Yamba", e.getMessage());
+				return "Failed to post";
+			}
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			//display the posting OK text
+			Toast.makeText(StatusActivity.this, "Posting was done!", Toast.LENGTH_LONG).show();
+		}
+
+		@Override
+		protected void onProgressUpdate(Integer... values) {
+			super.onProgressUpdate(values);
+			//no progress bar yet
+		}
+	};
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
