@@ -26,3 +26,21 @@ Marakana Java Fundamentals Tutorial: http://marakana.com/bookshelf/java_fundamen
 Introduction to Eclipse - Driving Java Productivity: http://mrkn.co/s/video_introduction_to_eclipse_driving_java_productivity,595/index.html
 
 Java Tutorial http://docs.oracle.com/javase/tutorial/
+
+== Homework Day 02
+
+- prepare the wishes for the last day of course
+- load the content of the loadForecastUrl in a String using HttpClient
+
+......
+
+city = "Novosibirsk"
+city = city.replaceAll(" ", "%20");
+
+//get the forecast of the next 5 days - http://api.openweathermap.org/data/2.5/forecast?q=Novosibirsk&ru&units=metric
+
+loadForecastUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&ru&units=metric";
+
+
+
+

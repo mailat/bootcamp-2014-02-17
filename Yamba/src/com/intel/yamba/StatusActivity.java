@@ -1,12 +1,10 @@
 package com.intel.yamba;
 
 import com.marakana.android.yamba.clientlib.YambaClient;
-import com.marakana.android.yamba.clientlib.YambaClientException;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.RemoteException;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -21,7 +19,7 @@ import android.widget.Toast;
 
 public class StatusActivity extends Activity {
 	TextView textCounter;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,7 +39,6 @@ public class StatusActivity extends Activity {
 		//add a listener for text change
 		editText.addTextChangedListener(textWatcher);
 		textCounter.setTextColor(Color.GREEN);
-		
 	}
 	
     //create the listener for text changes
@@ -83,8 +80,7 @@ public class StatusActivity extends Activity {
 		String editTextPost = editText.getText().toString();
 
 		//call the AsyncTask poster to send the text
-		PostToTwitter postToTwitter = new PostToTwitter();
-		postToTwitter.execute(editTextPost);
+		new PostToTwitter().execute(editTextPost);
 	}
 
 	/**
@@ -93,6 +89,7 @@ public class StatusActivity extends Activity {
 	 *
 	 */
 	class PostToTwitter extends AsyncTask<String, Integer, String>{
+		private ProgressDialog progress;
 
 		@Override
 		protected String doInBackground(String ... status) {
@@ -110,15 +107,15 @@ public class StatusActivity extends Activity {
 
 		@Override
 		protected void onPostExecute(String result) {
-			//display the posting OK text
+			progress.dismiss();
 			Toast.makeText(StatusActivity.this, "Posting was done!", Toast.LENGTH_LONG).show();
 		}
 
 		@Override
-		protected void onProgressUpdate(Integer... values) {
-			super.onProgressUpdate(values);
-			//no progress bar yet
+		protected void onPreExecute() {
+			progress = ProgressDialog.show(StatusActivity.this, "Posting to yamba server", "Please wait ....");
 		}
+
 	};
 	
 	@Override
