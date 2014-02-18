@@ -10,7 +10,7 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:id="@+id/TextView01"
+            android:id="@+id/titleStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -19,12 +19,11 @@
             android:textSize="32sp" />
 
         <TextView
-            android:id="@+id/titleStatus"
+            android:id="@+id/textCounter"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="140 chars"
-            android:textColor="@android:color/holo_purple"
+            android:text="140"
             android:textSize="10sp" />
 
     </LinearLayout>
@@ -34,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:maxLength="140"
         android:hint="@string/hintText" />
 
     <Button
