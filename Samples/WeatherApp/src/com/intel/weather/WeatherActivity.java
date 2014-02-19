@@ -18,7 +18,8 @@ public class WeatherActivity extends Activity {
     String loadUrl ;
     TextView textview;
     private String response ="";
- 
+
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
