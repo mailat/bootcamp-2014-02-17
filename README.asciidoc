@@ -41,6 +41,7 @@ city = city.replaceAll(" ", "%20");
 
 loadForecastUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&ru&units=metric";
 
+== Homework Day 03
 
-
-
+- import in eclipse the Eclipse project 07_Sqlite and play with the example on emulator
+- read on: http://developer.android.com/training/basics/data-storage/databases.html
