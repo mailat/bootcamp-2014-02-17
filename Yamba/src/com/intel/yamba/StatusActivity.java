@@ -22,10 +22,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class StatusActivity extends Activity implements OnSharedPreferenceChangeListener{
+public class StatusActivity extends Activity{
 	TextView textCounter;
-	YambaClient cloudPost = null;
-	SharedPreferences prefs;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +44,6 @@ public class StatusActivity extends Activity implements OnSharedPreferenceChange
 		//add a listener for text change
 		editText.addTextChangedListener(textWatcher);
 		textCounter.setTextColor(Color.GREEN);
-		
-		//prepare the preferences
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		prefs.registerOnSharedPreferenceChangeListener(this);
 	}
 	
     //create the listener for text changes
@@ -106,7 +100,7 @@ public class StatusActivity extends Activity implements OnSharedPreferenceChange
 		protected String doInBackground(String ... status) {
 			//start posting on twitter
 			try {
-				getYambaClient().postStatus(status[0]);
+				((YambaApplication) getApplication()).getYambaClient().postStatus(status[0]);
 				return "Posting was ok";
 			} catch (Throwable e) {
 				e.printStackTrace();
@@ -145,33 +139,6 @@ public class StatusActivity extends Activity implements OnSharedPreferenceChange
 	public boolean onOptionsItemSelected(MenuItem item) {
 		startActivity(new Intent(this, PrefsActivity.class));
 		return true;
-	}
-
-	@Override
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
-			String key) {
-		//preferences are changed, cloudpost must be recreated
-		cloudPost = null;
-	}
-	
-	/**
-	 * get the actual YambaClient or a new one in case the credentials are changed
-	 * @return - YambaClient
-	 */
-	private YambaClient getYambaClient()
-	{
-		if (cloudPost == null)
-		{
-			//read the credentials from the preferences
-			String username = prefs.getString("username", "") ;
-			String password = prefs.getString("password", "") ;
-			String apiRoot = prefs.getString("apiRoot", "http://yamba.marakana.com/api") ;
-			
-			//create the YambaClient
-			cloudPost = new YambaClient(username, password, apiRoot);
-		}
-		
-		return (cloudPost);
 	}
 
 }
