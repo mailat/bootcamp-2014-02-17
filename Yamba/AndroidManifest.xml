@@ -31,6 +31,7 @@
         
         <!-- list of services -->
         <service android:name=".UpdaterService"/>
+        <service android:name=".IntentUpdaterService"/>
         
     </application>
     
