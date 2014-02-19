@@ -14,4 +14,8 @@
 	<string name="summaryPassword">Please enter your password.</string>	
 	<string name="titleApiRoot">Api Root:</string>
 	
+	<string name="action_servicestart">Start service</string>
+	<string name="action_servicestop">Stop service</string>
+	
+	
 </resources>

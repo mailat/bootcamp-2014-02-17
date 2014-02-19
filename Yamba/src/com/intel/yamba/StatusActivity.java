@@ -1,14 +1,10 @@
 package com.intel.yamba;
 
-import com.marakana.android.yamba.clientlib.YambaClient;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -133,11 +129,24 @@ public class StatusActivity extends Activity{
 	}
 
 	/**
-	 * if we click on the settings item in the menu
+	 * if we click on the items in the menu
 	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		startActivity(new Intent(this, PrefsActivity.class));
+		//distribute the calls from the menus
+		switch (item.getItemId())
+		{
+			case R.id.action_settings:
+				startActivity(new Intent(this, PrefsActivity.class));
+				break;
+			case R.id.action_servicestart:
+				startService(new Intent(this, UpdaterService.class));
+				break;
+			case R.id.action_servicestop:
+				stopService(new Intent(this, UpdaterService.class));
+				break;			
+		}
+		
 		return true;
 	}
 

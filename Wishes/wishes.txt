@@ -6,6 +6,7 @@ Yuri
 
 Stepan
 - create the spam filter SMS
+- how to secure the application
 
 Vladimir
 - create an app with with preogress bar in the top part
@@ -15,7 +16,8 @@ Dasha
 - networking app to send messages to more than one devices
 
 Roman
-- interation with Android apps and control the apps from console 
+- use commnad tools from the Android application
+- to send events 
 - TestRecorder
 
 Pavel

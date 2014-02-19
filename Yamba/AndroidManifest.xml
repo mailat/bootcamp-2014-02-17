@@ -14,6 +14,8 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         android:name=".YambaApplication" >
+        
+        <!-- list of activities -->
         <activity
             android:name=".StatusActivity"
             android:label="@string/app_name" >
@@ -26,6 +28,9 @@
         
         <activity android:name=".SecondActivity"/>
         <activity android:name=".PrefsActivity"/>
+        
+        <!-- list of services -->
+        <service android:name=".UpdaterService"/>
         
     </application>
     

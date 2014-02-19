@@ -7,6 +7,8 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.preference.PreferenceManager;
 
 public class YambaApplication extends Application implements OnSharedPreferenceChangeListener{
+	private static final String TAG = "Yamba";
+
 	YambaClient cloudPost = null;
 	SharedPreferences prefs;
 	
