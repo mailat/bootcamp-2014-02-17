@@ -3,13 +3,18 @@ package com.intel.yamba;
 import com.marakana.android.yamba.clientlib.YambaClient;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.widget.Button;
@@ -17,8 +22,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class StatusActivity extends Activity {
+public class StatusActivity extends Activity implements OnSharedPreferenceChangeListener{
 	TextView textCounter;
+	YambaClient cloudPost = null;
+	SharedPreferences prefs;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,10 @@ public class StatusActivity extends Activity {
 		//add a listener for text change
 		editText.addTextChangedListener(textWatcher);
 		textCounter.setTextColor(Color.GREEN);
+		
+		//prepare the preferences
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		prefs.registerOnSharedPreferenceChangeListener(this);
 	}
 	
     //create the listener for text changes
@@ -94,9 +105,8 @@ public class StatusActivity extends Activity {
 		@Override
 		protected String doInBackground(String ... status) {
 			//start posting on twitter
-			YambaClient cloudPost = new YambaClient("marius", "password");
 			try {
-				cloudPost.postStatus(status[0]);
+				getYambaClient().postStatus(status[0]);
 				return "Posting was ok";
 			} catch (Throwable e) {
 				e.printStackTrace();
@@ -118,11 +128,50 @@ public class StatusActivity extends Activity {
 
 	};
 	
+	/**
+	 * display the menu
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.status, menu);
 		return true;
+	}
+
+	/**
+	 * if we click on the settings item in the menu
+	 */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		startActivity(new Intent(this, PrefsActivity.class));
+		return true;
+	}
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+			String key) {
+		//preferences are changed, cloudpost must be recreated
+		cloudPost = null;
+	}
+	
+	/**
+	 * get the actual YambaClient or a new one in case the credentials are changed
+	 * @return - YambaClient
+	 */
+	private YambaClient getYambaClient()
+	{
+		if (cloudPost == null)
+		{
+			//read the credentials from the preferences
+			String username = prefs.getString("username", "") ;
+			String password = prefs.getString("password", "") ;
+			String apiRoot = prefs.getString("apiRoot", "http://yamba.marakana.com/api") ;
+			
+			//create the YambaClient
+			cloudPost = new YambaClient(username, password, apiRoot);
+		}
+		
+		return (cloudPost);
 	}
 
 }

@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             android:text="140"
-            android:textSize="10sp" />
+            android:textSize="15sp" />
 
     </LinearLayout>
 
