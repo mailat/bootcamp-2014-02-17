@@ -27,9 +27,6 @@ public class StatusActivity extends Activity{
 		setContentView(R.layout.status);
 		Log.d("Yamba", "onCreate");
 		
-		//System.setProperty("http.proxyHost", "prox here");
-		//System.setProperty("http.proxyPort", "port here");
-		
 		Button buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
 		buttonUpdate.setOnLongClickListener(eventOnLongClickListener);
 		

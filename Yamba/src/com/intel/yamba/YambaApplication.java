@@ -14,6 +14,10 @@ public class YambaApplication extends Application implements OnSharedPreferenceC
 	public void onCreate() {
 		super.onCreate();
 		
+		//proxy should be in YambaApplication in case we have as entry point also a Receiver
+		//System.setProperty("http.proxyHost", "prox here");
+		//System.setProperty("http.proxyPort", "port here");
+		
 		//prepare the preferences
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		prefs.registerOnSharedPreferenceChangeListener(this);
