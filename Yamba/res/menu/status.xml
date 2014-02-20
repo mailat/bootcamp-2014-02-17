@@ -5,6 +5,10 @@
         android:showAsAction="never"
         android:title="@string/action_settings"/>
     <item
+        android:id="@+id/action_servicerefresh"
+        android:showAsAction="never"
+        android:title="@string/action_servicerefresh"/>
+    <item
         android:id="@+id/action_servicestop"
         android:showAsAction="never"
         android:title="@string/action_servicestop"/>

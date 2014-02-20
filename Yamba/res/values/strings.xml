@@ -16,6 +16,6 @@
 	
 	<string name="action_servicestart">Start service</string>
 	<string name="action_servicestop">Stop service</string>
-	
+	<string name="action_servicerefresh">Refresh</string>	
 	
 </resources>

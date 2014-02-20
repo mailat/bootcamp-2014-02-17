@@ -139,13 +139,14 @@ public class StatusActivity extends Activity{
 			case R.id.action_settings:
 				startActivity(new Intent(this, PrefsActivity.class));
 				break;
-			case R.id.action_servicestart:
-				//startService(new Intent(this, UpdaterService.class));
+			case R.id.action_servicerefresh:
 				startService(new Intent(this, IntentUpdaterService.class));
 				break;
+			case R.id.action_servicestart:
+				startService(new Intent(this, UpdaterService.class));
+				break;
 			case R.id.action_servicestop:
-				//stopService(new Intent(this, UpdaterService.class));
-				stopService(new Intent(this, IntentUpdaterService.class));
+				stopService(new Intent(this, UpdaterService.class));
 				break;			
 		}
 		

@@ -13,7 +13,7 @@ import android.util.Log;
 public class CititesDataSQLHelper extends SQLiteOpenHelper {
 	//date legate de baza de date
 	private static final String DATABASE_NAME = "cities.db";
-	private static final int DATABASE_VERSION = 5;
+	private static final int DATABASE_VERSION = 6;
 
 	//date legate de tabele
 	public static final String TABLE = "cities";
