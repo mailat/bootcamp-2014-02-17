@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">WebViewIndeterminateProgress</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Indefinite Progress</string>
+    <string name="str_hnt_et_url">Enter URL</string>
+    <string name="str_et_url">http://</string>
+    <string name="str_btn_load">Load URL</string>
+
+</resources>
