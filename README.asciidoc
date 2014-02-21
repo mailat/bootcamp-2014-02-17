@@ -36,3 +36,13 @@ Java Tutorial http://docs.oracle.com/javase/tutorial/
 
 - import in eclipse the Eclipse project 07_Sqlite and play with the example on emulator
 - read on: http://developer.android.com/training/basics/data-storage/databases.html
+
+== Homework Day 04
+
+- refactor the code in StatusData
+- implement the TimelineActivity
+
+== Homework Day 05
+
+- add an Alarm to trigger a notification message
+- add a PendingIntent for our TimelineActivity in the notification
