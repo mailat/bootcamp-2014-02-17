@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<array name="entries">
+		<item>@drawable/wink_foodcourt_icon</item>		
+		<item>@drawable/wink_hot_wink_icon</item> 		
+		<item>@drawable/wink_daily_wink_icon</item>		
+		<item>@drawable/wink_news_icon</item>
+		<item>@drawable/wink_event_icon</item>		
+	</array>	
+</resources>
