@@ -22,6 +22,7 @@ public class ReceiverSMSState extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 
+		//TODO move complete all code in an IntentService
 		lstSMS = listenIncomingSMS(context, intent);
 		if (lstSMS != null && lstSMS.size() > 0) {
 
@@ -35,14 +36,13 @@ public class ReceiverSMSState extends BroadcastReceiver {
 						try {
 							// try to be the only broadcast taking this SMS
 							abortBroadcast();
-
-							// deactivate the system notification
-							NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-							nm.cancel(1);
 							
 							//silent the SMS
 							//TODO Intent(SessionValues.getContext(), SMSServiceSilentMode.class));
 
+							// deactivate the system notification
+							NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+							nm.cancel(1);
 						} catch (Throwable e) {
 						}
 					}
